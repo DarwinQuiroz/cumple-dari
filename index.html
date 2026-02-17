@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¡Feliz Cumpleaños Dari! 🎂</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/css/music-control.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <div class="music-control">
+      <button class="music-btn" id="musicBtn" aria-label="Toggle music">
+        <svg id="playIcon" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+        <svg id="pauseIcon" viewBox="0 0 24 24" style="display: none">
+          <path d="M6 19h4V5H6zm8-14v14h4V5z" />
+        </svg>
+      </button>
+    </div>
+
+    <audio id="backgroundMusic" loop preload="auto">
+      <source src="assets/sound/si-dios-fuera-poeta.mp3" type="audio/mpeg" />
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Floating shapes for depth -->
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <h1>¡Feliz Cumpleaños Dari!</h1>
+        <p class="subtitle">Para una persona muy especial ✨</p>
+        <div class="cake-container">
+          <div class="cake">🎂</div>
+        </div>
+      </header>
+
+      <!-- Photo Gallery Section -->
+      <section class="photo-section">
+        <!-- <h2 class="section-title">Momentos Inolvidables 📸</h2> -->
+        <h2 class="section-title">Mensajes del Corazón 💌</h2>
+        <div class="photo-grid">
+          <div class="photo-card">
+            <div class="photo-placeholder">
+              <img src="assets/img/2.jpg" alt="" />
+            </div>
+            <p class="photo-caption">
+              En este día tan especial quiero desearte todo lo mejor del mundo.
+              Que cada sueño que tengas se haga realidad y que la felicidad te
+              acompañe siempre. Eres una persona maravillosa que ilumina la vida
+              de todos los que te rodean.
+            </p>
+          </div>
+          <div class="photo-card">
+            <div class="photo-placeholder">
+              <img src="assets/img/1.jpg" alt="" />
+            </div>
+            <p class="photo-caption">
+              Gracias por ser esa persona increíble que siempre tiene una
+              sonrisa para regalar, una palabra de aliento cuando más se
+              necesita y un corazón lleno de amor. Que este nuevo año de vida
+              esté lleno de aventuras, risas y momentos inolvidables.
+            </p>
+          </div>
+          <div class="photo-card">
+            <div class="photo-placeholder">
+              <img src="assets/img/5.jpg" alt="" />
+            </div>
+            <p class="photo-caption">
+              Hoy celebro no solo un año más de vida, sino la fortuna de tenerte
+              conmigo. Tu presencia hace del mundo un lugar mejor. ¡Que todos
+              tus deseos se cumplan y que la magia nunca falte en tu vida!
+            </p>
+          </div>
+          <div class="photo-card">
+            <div class="photo-placeholder">
+              <img src="assets/img/6.jpg" alt="" />
+            </div>
+            <p class="photo-caption">
+              Feliz cumpleaños a la reina de las risas y los momentos random.
+              Que este nuevo año te regale más anécdotas para contar y más
+              motivos para celebrar.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Messages Section -->
+      <!-- <section class="messages-section">
+        <h2 class="section-title">Mensajes del Corazón 💌</h2>
+
+        <div class="message-card">
+          <p class="message-text">
+            En este día tan especial quiero desearte todo lo mejor del mundo.
+            Que cada sueño que tengas se haga realidad y que la felicidad te
+            acompañe siempre. Eres una persona maravillosa que ilumina la vida
+            de todos los que te rodean.
+          </p>
+          <p class="message-author">— Con mucho cariño</p>
+        </div>
+
+        <div class="message-card">
+          <p class="message-text">
+            Gracias por ser esa persona increíble que siempre tiene una sonrisa
+            para regalar, una palabra de aliento cuando más se necesita y un
+            corazón lleno de amor. Que este nuevo año de vida esté lleno de
+            aventuras, risas y momentos inolvidables.
+          </p>
+          <p class="message-author">— Con mucho cariño</p>
+        </div>
+
+        <div class="message-card">
+          <p class="message-text">
+            Hoy celebro no solo un año más de vida, sino la fortuna de tenerte
+            conmigo. Tu presencia hace del mundo un lugar mejor. ¡Que todos tus
+            deseos se cumplan y que la magia nunca falte en tu vida!
+          </p>
+          <p class="message-author">— Con mucho cariño</p>
+        </div>
+      </section> -->
+
+      <!-- Wishes Section -->
+      <section class="wishes-section">
+        <h2 class="section-title">Mis Deseos Para Ti 🌈</h2>
+        <div class="wish-item">🎊 Que la alegría te acompañe siempre</div>
+        <div class="wish-item">✨ Que tus sueños se hagan realidad</div>
+        <div class="wish-item">🌺 Que el amor te rodee cada día</div>
+        <div class="wish-item">🎉 Que la salud y la prosperidad sean tuyas</div>
+        <div class="wish-item">💫 Que cada momento sea mágico</div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <p>Hecho con mucho cariño especialmente para ti, atte. Darwin.</p>
+        <p style="margin-top: 1rem; opacity: 0.8">
+          ¡Que tengas el mejor cumpleaños de tu vida!. Te quiero mucho, Dari.
+        </p>
+      </footer>
+    </div>
+
+    <script src="assets/js/music-control.js"></script>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
