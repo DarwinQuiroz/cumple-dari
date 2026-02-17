@@ -111,9 +111,3 @@ style.textContent = `
             }
         `;
 document.head.appendChild(style);
-
-// Console message
-console.log(
-  "%c🎉 ¡Feliz Cumpleaños! 🎂",
-  "font-size: 30px; color: #D97398; font-weight: bold;",
-);
