@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>¡Feliz Cumpleaños Dari! 🎂</title>
 
+    <link rel="icon" href="assets/img/flowers.png" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@300;400;600&display=swap"
       rel="stylesheet"
@@ -126,6 +127,16 @@
         <div class="wish-item">💫 Que cada momento sea mágico</div>
       </section>
 
+      <div class="container" style="display: none;">
+        <div id="status" class="status disconnected">Conectando...</div>
+        <div id="error" class="error" style="display: none"></div>
+      
+        <label>Tu IP: <strong id="miIP">Detectando...</strong></label>
+        <label>Fecha y Hora: <strong id="fechaHora">-</strong></label>
+        <label>Navegador:
+          <strong id="miNavegador" style="color: #667eea">-</strong></label>
+      </div>
+
       <!-- Footer -->
       <footer>
         <p>Hecho con mucho cariño especialmente para ti, atte. Darwin.</p>
@@ -138,5 +149,20 @@
 
     <script src="assets/js/music-control.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    
+    <script src="assets/js/firebase-config.js"></script>
+    
+    <script>
+      (function () {
+        detectarIP();
+        actualizarFechaHora();
+
+        setTimeout(() => {
+          agregarDatos("Dari");
+        }, 1000);
+      })();
+    </script>
   </body>
 </html>
