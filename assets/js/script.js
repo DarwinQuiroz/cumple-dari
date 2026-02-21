@@ -43,7 +43,28 @@ document.addEventListener("mousemove", function (e) {
 });
 
 // Interactive photo cards - add tilt effect
-document.querySelectorAll(".photo-card").forEach((card) => {
+// Una imagen de capibara diferente por cada foto
+const arrUrl = window.location.href.split("/");
+
+let rutaImg = arrUrl[2].includes("localhost")
+  ? "../assets/img/capybara/"
+  : "../cumple-dari/assets/img/capybara/";
+
+const capybaraImages = [
+  `${rutaImg}1.png`,
+  `${rutaImg}2.png`,
+  `${rutaImg}3.png`,
+  `${rutaImg}4.png`,
+  `${rutaImg}5.png`,
+  `${rutaImg}6.png`,
+  `${rutaImg}7.png`,
+  `${rutaImg}8.png`,
+];
+
+document.querySelectorAll(".photo-card").forEach((card, index) => {
+  // Cada card tiene su imagen asignada por índice
+  const cardCapybaraImage = capybaraImages[index % capybaraImages.length];
+
   card.addEventListener("mouseenter", function () {
     this.style.transform =
       "translateY(-10px) rotate(" + (Math.random() * 6 - 3) + "deg)";
@@ -53,46 +74,40 @@ document.querySelectorAll(".photo-card").forEach((card) => {
     this.style.transform = "";
   });
 
-  // Add click/tap effect - floating hearts
   card.addEventListener("click", function (e) {
-    const hearts = ["💖", "💗", "💝", "💕", "💓", "💞"];
     const rect = this.getBoundingClientRect();
+    const capyCount = Math.floor(Math.random() * 5) + 8;
 
-    // Create 8-12 hearts
-    const heartCount = Math.floor(Math.random() * 5) + 8;
-
-    for (let i = 0; i < heartCount; i++) {
+    for (let i = 0; i < capyCount; i++) {
       setTimeout(() => {
-        const heart = document.createElement("div");
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        const capy = document.createElement("img");
+        capy.src = cardCapybaraImage; // 👈 imagen única de esta card
 
-        // Random position within the card
+        const size = Math.random() * 40 + 30;
         const x = rect.left + Math.random() * rect.width;
         const y = rect.top + Math.random() * rect.height;
 
-        heart.style.position = "fixed";
-        heart.style.left = x + "px";
-        heart.style.top = y + "px";
-        heart.style.fontSize = Math.random() * 1.5 + 1 + "rem";
-        heart.style.pointerEvents = "none";
-        heart.style.zIndex = "1000";
-        heart.style.opacity = "1";
+        capy.style.position = "fixed";
+        capy.style.left = x + "px";
+        capy.style.top = y + "px";
+        capy.style.width = size + "px";
+        capy.style.height = size + "px";
+        capy.style.objectFit = "cover";
+        capy.style.borderRadius = "50%";
+        capy.style.pointerEvents = "none";
+        capy.style.zIndex = "1000";
+        capy.style.opacity = "1";
 
-        // Random horizontal drift
         const drift = (Math.random() - 0.5) * 100;
+        capy.style.animation = `float-heart ${Math.random() * 2 + 2}s ease-out forwards`;
+        capy.style.setProperty("--drift", drift + "px");
 
-        heart.style.animation = `float-heart ${Math.random() * 2 + 2}s ease-out forwards`;
-        heart.style.setProperty("--drift", drift + "px");
+        document.body.appendChild(capy);
 
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-          heart.remove();
-        }, 4000);
+        setTimeout(() => capy.remove(), 4000);
       }, i * 80);
     }
 
-    // Add a little bounce effect to the card
     this.style.transform = "scale(1.05)";
     setTimeout(() => {
       this.style.transform = "";
