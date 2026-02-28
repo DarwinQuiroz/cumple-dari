@@ -82,7 +82,7 @@ function detectarNavegador() {
 function agregarDatos(pagina) {
   const arrUrl = window.location.href.split("/");
 
-  //   if (arrUrl[2].includes("localhost")) return;
+  if (arrUrl[2].includes("localhost")) return;
 
   const ip = document.getElementById("miIP").textContent;
   const fecha = document.getElementById("fechaHora").textContent;
