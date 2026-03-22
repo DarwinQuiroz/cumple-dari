@@ -7,6 +7,12 @@
   --pastel-yellow: #fff9d0;
   --text-primary: #6b5b73;
   --text-accent: #d97398;
+  --blush: #fce8ee;
+  --rose: #f2a7b7;
+  --rose-dark: #d97b94;
+  --gold: #d4a95a;
+  --text-light: #8a6070;
+  --text: #5a3a44;
 }
 
 * {
@@ -197,6 +203,7 @@ h1 {
 .photo-card:hover {
   transform: translateY(-10px) rotate(2deg);
   box-shadow: 0 12px 48px rgba(107, 91, 115, 0.2);
+  cursor: pointer;
 }
 
 .photo-placeholder {
@@ -660,4 +667,81 @@ footer {
   .deco-star {
     font-size: 1.5rem;
   }
+}
+
+#deseos {
+  padding: 7rem 5%;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.deseos-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.deseos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.deseo {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  box-shadow: 0 4px 20px rgba(201, 132, 154, 0.12);
+  opacity: 1;
+  transform: translateX(-30px);
+  transition:
+    opacity 0.6s,
+    transform 0.6s;
+}
+
+.deseo.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.deseo-num {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--rose);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.deseo-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-light);
+  padding-top: 0.4rem;
+}
+
+.section-label {
+  font-family: "Dancing Script", cursive;
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.section-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.15;
+}
+
+.section-title em {
+  color: var(--rose-dark);
+  font-style: italic;
 }
