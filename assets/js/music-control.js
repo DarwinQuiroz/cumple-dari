@@ -11,16 +11,34 @@ function setupMusicControls() {
 
   music.load();
   music.currentTime = 0;
-  music
-    .play()
-    .then(() => {
-      console.log("Autoplay successful at:", music.currentTime);
-      playIcon.style.display = "none";
-      pauseIcon.style.display = "block";
-    })
-    .catch((error) => {
-      console.warn("Autoplay blocked:", error.message);
-    });
+
+  const playPromise = music.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        console.log("Autoplay successful at:", music.currentTime);
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "block";
+      })
+      .catch((error) => {
+        console.warn("Autoplay blocked:", error.message);
+        
+        // Reproducir música en el primer clic/interacción del usuario si autoplay falla
+        const playOnInteraction = () => {
+          music.play().then(() => {
+            playIcon.style.display = "none";
+            pauseIcon.style.display = "block";
+          }).catch(err => console.error("Error al reproducir en interacción:", err));
+          
+          document.removeEventListener('click', playOnInteraction);
+          document.removeEventListener('touchstart', playOnInteraction);
+        };
+
+        document.addEventListener('click', playOnInteraction);
+        document.addEventListener('touchstart', playOnInteraction);
+      });
+  }
 
   function toggleMusic() {
     if (music.paused) {
