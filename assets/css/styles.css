@@ -135,23 +135,161 @@ h1 {
 .cake-container {
   display: flex;
   justify-content: center;
-  margin: 2rem 0;
+  align-items: center;
+  margin: 4rem 0 2rem;
+  min-height: 250px;
   animation: fadeIn 1s ease-out 0.9s both;
 }
 
-.cake {
-  font-size: clamp(4rem, 10vw, 8rem);
-  animation: bounce 2s ease-in-out infinite;
+.birthday-cake {
+  position: relative;
+  width: 200px;
+  height: 180px;
+  animation: float-cake 3s ease-in-out infinite;
 }
 
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+@keyframes float-cake {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.cake-layer {
+  position: absolute;
+  border-radius: 10px 10px 0 0;
+}
+
+.cake-bottom {
+  width: 200px;
+  height: 60px;
+  background: var(--rose);
+  bottom: 0;
+  left: 0;
+  box-shadow: inset 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+.cake-middle {
+  width: 150px;
+  height: 50px;
+  background: var(--pastel-pink);
+  bottom: 60px;
+  left: 25px;
+  box-shadow: inset 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+.cake-top {
+  width: 100px;
+  height: 45px;
+  background: white;
+  bottom: 110px;
+  left: 50px;
+  box-shadow: inset 0 -5px 15px rgba(0,0,0,0.05);
+}
+
+.icing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  border-radius: 10px 10px 0 0;
+}
+
+.icing-bottom { background: var(--blush); }
+.icing-middle { background: white; }
+.icing-top { background: var(--pastel-mint); }
+
+.drip {
+  position: absolute;
+  top: 20px;
+  background: inherit;
+  border-radius: 0 0 20px 20px;
+}
+
+/* Bottom layer drips */
+.cake-bottom .drip:nth-child(1) { width: 30px; height: 25px; left: 10px; }
+.cake-bottom .drip:nth-child(2) { width: 40px; height: 40px; left: 50px; }
+.cake-bottom .drip:nth-child(3) { width: 30px; height: 20px; left: 100px; }
+.cake-bottom .drip:nth-child(4) { width: 45px; height: 35px; left: 140px; }
+
+/* Middle layer drips */
+.cake-middle .drip:nth-child(1) { width: 25px; height: 30px; left: 15px; }
+.cake-middle .drip:nth-child(2) { width: 35px; height: 20px; left: 50px; }
+.cake-middle .drip:nth-child(3) { width: 30px; height: 35px; left: 95px; }
+
+/* Top layer drips */
+.cake-top .drip:nth-child(1) { width: 25px; height: 25px; left: 10px; }
+.cake-top .drip:nth-child(2) { width: 20px; height: 15px; left: 45px; }
+.cake-top .drip:nth-child(3) { width: 20px; height: 30px; left: 70px; }
+
+.candle {
+  position: absolute;
+  width: 14px;
+  height: 45px;
+  background: repeating-linear-gradient(45deg, white, white 5px, var(--rose-dark) 5px, var(--rose-dark) 10px);
+  bottom: 155px;
+  left: 93px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.candle::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 6px;
+  width: 2px;
+  height: 8px;
+  background: #333;
+}
+
+.flame {
+  position: absolute;
+  width: 16px;
+  height: 26px;
+  background: #feca57;
+  border-radius: 50% 50% 20% 20%;
+  top: -30px;
+  left: -1px;
+  box-shadow: 0 0 15px #feca57, 0 0 30px #ff9f43;
+  animation: flicker 0.6s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+}
+
+@keyframes flicker {
+  0% { transform: scale(1) rotate(-2deg); background: #ff9f43; box-shadow: 0 0 10px #ff9f43, 0 0 20px #ff9f43; }
+  100% { transform: scale(1.1) rotate(2deg); background: #feca57; box-shadow: 0 0 20px #feca57, 0 0 40px #ff9f43;}
+}
+
+.plate {
+  position: absolute;
+  width: 260px;
+  height: 12px;
+  background: #f1f2f6;
+  border-radius: 10px;
+  bottom: -10px;
+  left: -30px;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+}
+
+.cake-sparkles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.c-star {
+  position: absolute;
+  color: #feca57;
+  font-size: 1.5rem;
+  animation: pop-star 2s infinite ease-in-out alternate;
+}
+.cs1 { top: -20px; left: -20px; animation-delay: 0s; }
+.cs2 { top: 20px; right: -30px; animation-delay: 0.5s; font-size: 1.2rem; }
+.cs3 { top: -40px; right: 10px; animation-delay: 1s; font-size: 1rem; }
+
+@keyframes pop-star {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 5px #feca57); }
 }
 
 /* Photo Grid */
