@@ -72,5 +72,3 @@ function setupMusicControls() {
   music.addEventListener("play", () => console.log("Music play event"));
   music.addEventListener("pause", () => console.log("Music pause event"));
 }
-
-setupMusicControls();
