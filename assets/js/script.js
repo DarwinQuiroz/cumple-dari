@@ -1,5 +1,4 @@
 window.addEventListener('load', () => {
-  // setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1800);
   setTimeout(() => {
     document.getElementById('loader').classList.add('hidden')
     setupMusicControls();
