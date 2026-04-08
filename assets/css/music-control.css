@@ -6,13 +6,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(40, 10, 15, 0.6);
+  background: rgba(20, 5, 10, 0.3);
   padding: 12px 18px;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.3s ease;
 }
 
@@ -55,10 +55,11 @@
 .music-btn.main-btn {
   width: 45px;
   height: 45px;
-  background: linear-gradient(135deg, #d12511, #8b0000);
-  border: 1px solid #ff4d6d;
+  background: linear-gradient(135deg, rgba(209, 37, 17, 0.85), rgba(139, 0, 0, 0.85));
+  border: 1px solid rgba(255, 77, 109, 0.4);
   border-radius: 50%;
-  box-shadow: 0 5px 15px rgba(209, 37, 17, 0.4);
+  box-shadow: 0 5px 15px rgba(209, 37, 17, 0.3);
+  backdrop-filter: blur(4px);
 }
 
 .music-btn.min-btn {
@@ -118,7 +119,11 @@
     flex-direction: row;
     gap: 15px;
     border-radius: 30px;
-    background: rgba(20, 5, 8, 0.85);
+    background: rgba(20, 5, 10, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   }
 
   .song-info {
