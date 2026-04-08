@@ -20,19 +20,33 @@
       <div class="loader-line"></div>
     </div>
 
-    <div class="music-control">
-      <button class="music-btn" id="musicBtn" aria-label="Toggle music">
-        <svg id="playIcon" viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z" />
-        </svg>
-        <svg id="pauseIcon" viewBox="0 0 24 24" style="display: none">
-          <path d="M6 19h4V5H6zm8-14v14h4V5z" />
-        </svg>
-      </button>
+    <div class="music-player">
+      <div class="song-info">
+        <span class="song-title" id="songTitle">Cargando...</span>
+      </div>
+      <div class="music-controls">
+        <button class="music-btn min-btn" id="prevBtn" aria-label="Anterior">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
+          </svg>
+        </button>
+        <button class="music-btn main-btn" id="musicBtn" aria-label="Reproducir/Pausar">
+          <svg id="playIcon" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          <svg id="pauseIcon" viewBox="0 0 24 24" style="display: none">
+            <path d="M6 19h4V5H6zm8-14v14h4V5z" />
+          </svg>
+        </button>
+        <button class="music-btn min-btn" id="nextBtn" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24">
+            <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <audio id="backgroundMusic" loop>
-      <source src="assets/sound/contigo.mp3" type="audio/mpeg" />
+    <audio id="backgroundMusic">
       Tu navegador no soporta el elemento de audio.
     </audio>
 

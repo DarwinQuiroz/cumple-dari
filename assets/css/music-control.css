@@ -1,4 +1,4 @@
-.music-control {
+.music-player {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -6,119 +6,149 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: rgba(40, 10, 15, 0.6);
+  padding: 12px 18px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.song-info {
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.song-title {
+  color: #f8c1cc;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  max-width: 150px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.music-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .music-btn {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #d12511, #8b0000);
-  border: 1px solid #8b0000;
-  border-radius: 50%;
+  background: transparent;
+  border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
   transition: all 0.3s ease;
+  padding: 0;
+}
+
+.music-btn.main-btn {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #d12511, #8b0000);
+  border: 1px solid #ff4d6d;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(209, 37, 17, 0.4);
+}
+
+.music-btn.min-btn {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.music-btn.min-btn svg {
+  fill: #fff;
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
 
 .music-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(139, 0, 0, 0.7);
+}
+
+.music-btn.main-btn:hover {
+  box-shadow: 0 8px 20px rgba(255, 77, 109, 0.6);
+}
+
+.music-btn.min-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.music-btn.min-btn:hover svg {
+  opacity: 1;
 }
 
 .music-btn:active {
   transform: scale(0.95);
 }
 
-.music-btn svg {
-  width: 24px;
-  height: 24px;
+.music-btn.main-btn svg {
+  width: 22px;
+  height: 22px;
   fill: #fff;
-}
-
-.volume-control {
-  width: 120px;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(139, 0, 0, 0.7);
-  margin-top: 10px;
-  display: none;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
-}
-
-.volume-control.visible {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.volume-control input {
-  width: 100%;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-  outline: none;
-  cursor: pointer;
-  -webkit-appearance: none;
-}
-
-.volume-control input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  background: #ff4d6d;
-  border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.volume-control input::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  background: #ff4d6d;
-  border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  border: none;
 }
 
 /* Mobile adjustments */
 @media only screen and (max-width: 768px) {
-  .music-control {
-    right: 15px;
+  .music-player {
+    top: auto;
+    bottom: 25px;
+    right: 50%;
+    transform: translateX(50%);
+    padding: 10px 15px;
+    flex-direction: row;
+    gap: 15px;
+    border-radius: 30px;
+    background: rgba(20, 5, 8, 0.85);
   }
 
-  .music-btn {
-    width: 35px;
-    height: 35px;
+  .song-info {
+    margin-bottom: 0;
+    flex-shrink: 1;
   }
 
-  .music-btn svg {
-    width: 22px;
-    height: 22px;
+  .song-title {
+    max-width: 110px;
+    font-size: 0.8rem;
+    text-align: left;
   }
 
-  .volume-control {
-    width: 100px;
-    margin-top: 8px;
+  .music-controls {
+    gap: 10px;
   }
 
-  .volume-control input {
-    height: 10px;
+  .music-btn.main-btn {
+    width: 40px;
+    height: 40px;
   }
 
-  .volume-control input::-webkit-slider-thumb {
+  .music-btn.min-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .music-btn.main-btn svg {
     width: 18px;
     height: 18px;
   }
-
-  .volume-control input::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
+  
+  .music-btn.min-btn svg {
+    width: 14px;
+    height: 14px;
   }
 }
