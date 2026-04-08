@@ -105,6 +105,10 @@
 
 /* Mobile adjustments */
 @media only screen and (max-width: 768px) {
+  body {
+    padding-bottom: 100px;
+  }
+
   .music-player {
     top: auto;
     bottom: 25px;
