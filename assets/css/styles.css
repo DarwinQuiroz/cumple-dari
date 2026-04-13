@@ -93,7 +93,7 @@ body {
 }
 
 /* Confetti Animation */
-.confetti {
+/* .confetti {
   position: fixed;
   width: 10px;
   height: 10px;
@@ -108,7 +108,7 @@ body {
   to {
     transform: translateY(100vh) rotate(360deg);
   }
-}
+} */
 
 /* Floating shapes */
 .floating-shape {
