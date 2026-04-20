@@ -12,6 +12,7 @@
     />
 
     <link rel="stylesheet" href="assets/css/music-control.css" />
+    <link rel="stylesheet" href="assets/css/gamer-section.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -286,6 +287,190 @@
         </div>
       </section>
 
+      <!-- Gamer Love Section -->
+      <section id="gamer-section" class="gamer-section">
+        <div class="gamer-bg-particles" id="gamerParticles"></div>
+        <div class="gamer-header">
+          <span class="gamer-label">🎮 ZONA GAMER 🎮</span>
+          <h2 class="gamer-title">
+            Player 1 <span class="gamer-heart">❤️</span> Player 2
+          </h2>
+          <p class="gamer-subtitle">
+            Nuestro amor es como un Victory Royale... ¡épico e imbatible!
+          </p>
+        </div>
+
+        <!-- Interactive Phrase Generator -->
+        <div class="gamer-slot-machine">
+          <h3 class="slot-title">🎰 Generador de Frases Gamer 🎰</h3>
+          <p class="slot-instruction">
+            ¡Dale al botón para descubrir tu frase gamer romántica!
+          </p>
+          <div class="slot-display" id="slotDisplay">
+            <span class="slot-emoji" id="slotEmoji">🎮</span>
+            <p class="slot-phrase" id="slotPhrase">
+              Presiona el botón para empezar...
+            </p>
+          </div>
+          <button class="slot-btn" id="slotBtn">
+            <span class="btn-icon">🕹️</span> ¡GENERAR FRASE!
+          </button>
+        </div>
+
+        <!-- Flipcards Grid -->
+        <div class="gamer-cards-grid">
+          <!-- Fortnite Card 1 -->
+          <div class="gamer-flip-card" data-game="fortnite">
+            <div class="gamer-flip-inner">
+              <div class="gamer-flip-front">
+                <img
+                  src="assets/img/gamer/fortnite.png"
+                  alt="Fortnite"
+                  class="gamer-card-img"
+                />
+                <div class="gamer-card-badge">FORTNITE</div>
+                <p class="gamer-card-hint">🔄 Tócame</p>
+              </div>
+              <div class="gamer-flip-back gamer-flip-back-fortnite">
+                <span class="gamer-back-emoji">🏆</span>
+                <p class="gamer-back-phrase">
+                  Eres mi Victory Royale en la vida real. Cada día contigo es
+                  una partida ganada.
+                </p>
+                <span class="gamer-back-tag">#FortniteForever</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mario Kart Card 1 -->
+          <div class="gamer-flip-card" data-game="mariokart">
+            <div class="gamer-flip-inner">
+              <div class="gamer-flip-front">
+                <img
+                  src="assets/img/gamer/mariokart.png"
+                  alt="Mario Kart"
+                  class="gamer-card-img"
+                />
+                <div class="gamer-card-badge badge-mariokart">MARIO KART</div>
+                <p class="gamer-card-hint">🔄 Tócame</p>
+              </div>
+              <div class="gamer-flip-back gamer-flip-back-mariokart">
+                <span class="gamer-back-emoji">🏎️</span>
+                <p class="gamer-back-phrase">
+                  Me tiraste un caparazón azul al corazón y no pude esquivarlo.
+                  ¡GG, me ganaste!
+                </p>
+                <span class="gamer-back-tag">#RainbowRoadLove</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gamer Couple Card -->
+          <div class="gamer-flip-card" data-game="gamer">
+            <div class="gamer-flip-inner">
+              <div class="gamer-flip-front">
+                <img
+                  src="assets/img/gamer/gamer_couple.png"
+                  alt="Gamer Love"
+                  class="gamer-card-img"
+                />
+                <div class="gamer-card-badge badge-gamer">GAMER LOVE</div>
+                <p class="gamer-card-hint">🔄 Tócame</p>
+              </div>
+              <div class="gamer-flip-back gamer-flip-back-gamer">
+                <span class="gamer-back-emoji">💜</span>
+                <p class="gamer-back-phrase">
+                  Eres el player 2 que siempre quise. Contigo cada partida es
+                  una aventura increíble.
+                </p>
+                <span class="gamer-back-tag">#CoOpForever</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fortnite Card 2 -->
+          <div class="gamer-flip-card" data-game="fortnite">
+            <div class="gamer-flip-inner">
+              <div class="gamer-flip-front fortnite-front-alt">
+                <div class="gamer-front-content">
+                  <span class="gamer-front-icon">🎯</span>
+                  <h4>Misión Especial</h4>
+                  <p class="gamer-card-hint">🔄 Tócame para ver</p>
+                </div>
+              </div>
+              <div class="gamer-flip-back gamer-flip-back-fortnite">
+                <span class="gamer-back-emoji">🛡️</span>
+                <p class="gamer-back-phrase">
+                  Quisiera ser tu escudo en Fortnite para protegerte de todo,
+                  hasta de la tormenta de la vida.
+                </p>
+                <span class="gamer-back-tag">#ShieldUp</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mario Kart Card 2 -->
+          <div class="gamer-flip-card" data-game="mariokart">
+            <div class="gamer-flip-inner">
+              <div class="gamer-flip-front mariokart-front-alt">
+                <div class="gamer-front-content">
+                  <span class="gamer-front-icon">⭐</span>
+                  <h4>Power Up</h4>
+                  <p class="gamer-card-hint">🔄 Tócame para ver</p>
+                </div>
+              </div>
+              <div class="gamer-flip-back gamer-flip-back-mariokart">
+                <span class="gamer-back-emoji">🍄</span>
+                <p class="gamer-back-phrase">
+                  Eres como un hongo dorado en Mario Kart: me haces ir más
+                  rápido al cielo de la felicidad.
+                </p>
+                <span class="gamer-back-tag">#GoldenMushroom</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wild Card -->
+          <div class="gamer-flip-card" data-game="gamer">
+            <div class="gamer-flip-inner">
+              <div class="gamer-flip-front wild-front">
+                <div class="gamer-front-content">
+                  <span class="gamer-front-icon">🃏</span>
+                  <h4>Carta Sorpresa</h4>
+                  <p class="gamer-card-hint">🔄 Tócame para ver</p>
+                </div>
+              </div>
+              <div class="gamer-flip-back gamer-flip-back-gamer">
+                <span class="gamer-back-emoji">👾</span>
+                <p class="gamer-back-phrase">
+                  Si la vida fuera un videojuego, tú serías el logro secreto que
+                  todos quieren desbloquear... ¡y yo ya lo hice! 🏅
+                </p>
+                <span class="gamer-back-tag">#AchievementUnlocked</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- XP Progress Bar -->
+        <div class="gamer-xp-section">
+          <h3 class="xp-title">💕 Nivel de Amor Gamer</h3>
+          <div class="xp-bar-container">
+            <div class="xp-bar" id="xpBar">
+              <span class="xp-text" id="xpText">0 / 100 XP</span>
+            </div>
+          </div>
+          <p class="xp-hint">
+            ¡Voltea todas las cartas para subir de nivel! 🆙
+          </p>
+          <div class="xp-level" id="xpLevel">Nivel: Noob Enamorado 💚</div>
+        </div>
+
+        <div class="gamer-footer-msg">
+          <p>🎮 Nuestro amor no necesita Wi-Fi, pero sí mucho co-op 🎮</p>
+        </div>
+      </section>
+
       <div class="container" style="display: none">
         <div id="status" class="status disconnected">Conectando...</div>
         <div id="error" class="error" style="display: none"></div>
@@ -309,6 +494,7 @@
     </div>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/gamer-section.js"></script>
     <script src="assets/js/music-control.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
