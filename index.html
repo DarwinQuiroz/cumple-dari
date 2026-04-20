@@ -11,6 +11,11 @@
       rel="stylesheet"
     />
 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Pacifico&family=Rajdhani:wght@400;600;700&family=Dancing+Script:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="assets/css/music-control.css" />
     <link rel="stylesheet" href="assets/css/gamer-section.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
@@ -24,9 +29,9 @@
     </div>
 
     <div class="music-player">
-      <div class="song-info">
+      <!-- <div class="song-info">
         <span class="song-title" id="songTitle">Cargando...</span>
-      </div>
+      </div> -->
       <div class="music-controls">
         <button class="music-btn min-btn" id="prevBtn" aria-label="Anterior">
           <svg viewBox="0 0 24 24">
@@ -296,16 +301,17 @@
             Player 1 <span class="gamer-heart">❤️</span> Player 2
           </h2>
           <p class="gamer-subtitle">
-            Nuestro amor es como un Victory Royale... ¡épico e imbatible!
+            Eres tú la jugadora más especial en mi vida, hoy tu nivel sube y
+            mereces tod el XP del mundo! 💜
           </p>
         </div>
 
         <!-- Interactive Phrase Generator -->
         <div class="gamer-slot-machine">
-          <h3 class="slot-title">🎰 Generador de Frases Gamer 🎰</h3>
+          <!-- <h3 class="slot-title">🎰 Generador de Frases Gamer 🎰</h3>
           <p class="slot-instruction">
             ¡Dale al botón para descubrir tu frase gamer romántica!
-          </p>
+          </p> -->
           <div class="slot-display" id="slotDisplay">
             <span class="slot-emoji" id="slotEmoji">🎮</span>
             <p class="slot-phrase" id="slotPhrase">
@@ -371,10 +377,10 @@
               <div class="gamer-flip-front">
                 <img
                   src="assets/img/gamer/gamer_couple.png"
-                  alt="Gamer Love"
+                  alt="Besties"
                   class="gamer-card-img"
                 />
-                <div class="gamer-card-badge badge-gamer">GAMER LOVE</div>
+                <div class="gamer-card-badge badge-gamer">BESTIES</div>
                 <p class="gamer-card-hint">🔄 Tócame</p>
               </div>
               <div class="gamer-flip-back gamer-flip-back-gamer">
@@ -422,8 +428,8 @@
               <div class="gamer-flip-back gamer-flip-back-mariokart">
                 <span class="gamer-back-emoji">🍄</span>
                 <p class="gamer-back-phrase">
-                  Eres como un hongo dorado en Mario Kart: me haces ir más
-                  rápido al cielo de la felicidad.
+                  Eres como un champiñón dorado, siempre me haces reír y alegras
+                  mis días a toda velocidad.
                 </p>
                 <span class="gamer-back-tag">#GoldenMushroom</span>
               </div>
@@ -454,7 +460,7 @@
 
         <!-- XP Progress Bar -->
         <div class="gamer-xp-section">
-          <h3 class="xp-title">💕 Nivel de Amor Gamer</h3>
+          <h3 class="xp-title">💕 Nivel de Amistad Gamer</h3>
           <div class="xp-bar-container">
             <div class="xp-bar" id="xpBar">
               <span class="xp-text" id="xpText">0 / 100 XP</span>
@@ -463,11 +469,44 @@
           <p class="xp-hint">
             ¡Voltea todas las cartas para subir de nivel! 🆙
           </p>
-          <div class="xp-level" id="xpLevel">Nivel: Noob Enamorado 💚</div>
+          <div class="xp-level" id="xpLevel">Compañeros de Squad 🤝</div>
         </div>
 
-        <div class="gamer-footer-msg">
-          <p>🎮 Nuestro amor no necesita Wi-Fi, pero sí mucho co-op 🎮</p>
+        <!-- <div class="gamer-footer-msg">
+          <p>
+            🎮 Las amistades verdaderas no tienen respawn, por eso te cuido
+            tanto 🎮
+          </p>
+        </div> -->
+        <div id="birthday-msg">
+          <div class="bday-card reveal">
+            <span class="bday-emoji">🎮</span>
+            <div class="bday-message">
+              Hoy no solo subes de nivel en el juego,<br />
+              subes de nivel en la vida.<br /><br />
+              <strong>Que este nuevo año</strong> esté lleno de Victory
+              Royales,<br />
+              de primeros lugares en Rainbow Road,<br />
+              de cofres legendarios y estrellas de invencibilidad.<br /><br />
+              Porque te lo mereces todo —<br />
+              <strong>dentro y fuera del juego. 💜</strong>
+            </div>
+
+            <div class="bday-stats">
+              <div class="stat-item">
+                <span class="stat-value">∞</span>
+                <span class="stat-label">Vidas Ganadas</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">⭐⭐⭐</span>
+                <span class="stat-label">Estrellas Hoy</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">100%</span>
+                <span class="stat-label">Épico eres</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

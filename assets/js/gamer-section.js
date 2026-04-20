@@ -6,23 +6,37 @@
 (function () {
   'use strict';
 
+  // ── SCROLL REVEAL ──
+      const revealEls = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      revealEls.forEach((el) => observer.observe(el));
+
   // ── Gamer Phrases for Slot Machine ──
   const gamerPhrases = [
-    // { emoji: '🏆', text: 'Si el amor fuera Fortnite, contigo siempre tendría la victoria asegurada. ¡GG EZ!' },
+    { emoji: '🎯', text: 'Mi puntería en Fortnite es malísima, pero acerté de lleno al elegirte como amiga.' },
     { emoji: '🏎️', text: 'Eres mi estrella de invincibilidad en Mario Kart... ¡nadie me detiene cuando estoy contigo!' },
-    { emoji: '💜', text: 'Antes de conocerte, jugaba en modo solo. Ahora mi modo favorito es el co-op contigo.' },
+    // { emoji: '💜', text: 'Antes de conocerte, jugaba en modo solo. Ahora mi modo favorito es el co-op contigo.' },
     { emoji: '🎯', text: 'En Fortnite construyo muros, pero contigo construyo sueños. ¡Y sin materiales!' },
     { emoji: '🍌', text: 'Te lanzaría una cáscara de banana en Mario Kart, pero solo para que te quedes conmigo un ratito más.' },
     { emoji: '🛡️', text: 'Eres como el escudo legendario de Fortnite: me proteges de todo y me haces sentir invencible.' },
     { emoji: '⭐', text: 'Contigo todo es como la Rainbow Road: ¡colorido, loco, pero siempre vale la pena!' },
-    // { emoji: '🎮', text: 'Mi ping puede ser alto, pero mi amor por ti es más alto todavía. ¡No lag detectado!' },
+    { emoji: '🍌', text: 'Si resbalo con una banana en Mario Kart, sé que serías la primera en reírte... y luego ayudarme.' },
     { emoji: '🍄', text: 'Eres mi Super Estrella de Mario: me haces brillar e ir a toda velocidad por la vida.' },
-    // { emoji: '🔫', text: 'Saquée la SCAR legendaria en Fortnite... pero el verdadero loot épico eres tú.' },
+    { emoji: '🛡️', text: 'Eres mi poción de escudos en los días malos. ¡Gracias por recargar mi energía siempre!' },
     { emoji: '🏁', text: 'Puedo perder en Mario Kart, pero nunca quiero perder la carrera de estar a tu lado.' },
     { emoji: '🎪', text: 'Si me preguntaran dónde dropear en Fortnite, elegiría siempre donde estés tú.' },
     { emoji: '💚', text: 'En el juego de la vida, tú eres el mejor power-up que he encontrado. ¡Nivel completado!' },
     { emoji: '👾', text: 'Como la arena en Fortnire, tú haces que cada desafío valga la pena.. ¡eres mi misión principal!' },
-    // { emoji: '🏅', text: 'Desbloqueaste el logro más difícil: hacer que un gamer deje el control por ti. ¡Achievement Unlocked!' },
+    { emoji: '🍄', text: 'Que este nuevo año consigas todos los power-ups que te propongas en la vida.' },
   ];
 
   let lastPhraseIndex = -1;
@@ -134,12 +148,12 @@
     const totalCards = cards.length;
 
     const levels = [
-      { min: 0,   label: 'Noob Enamorado 💚' },
-      { min: 17,  label: 'Amante Nivel Intermedio 💛' },
-      { min: 34,  label: 'Pro del Amor 🧡' },
-      { min: 50,  label: 'Veterano Romántico 💗' },
-      { min: 67,  label: 'Maestro del Co-Op ❤️' },
-      { min: 84,  label: '¡¡LEGENDARY LOVER!! 💖👑' },
+      { min: 0,   label: 'Compañeros de Squad 🤝' },
+      { min: 17,  label: 'Fase Tutorial Completada 💡' },
+      { min: 34,  label: 'Dinamita Pura (Tú y Yo) 💥' },
+      { min: 50,  label: 'Equipo Imparable ⭐' },
+      { min: 67,  label: 'Risas a Nivel Pro 🤣' },
+      { min: 84,  label: '¡¡AMISTAD LEGENDARIA!! 🏆✨' },
     ];
 
     function updateXP() {
