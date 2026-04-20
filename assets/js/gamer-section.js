@@ -153,7 +153,7 @@
       { min: 34,  label: 'Dinamita Pura (Tú y Yo) 💥' },
       { min: 50,  label: 'Equipo Imparable ⭐' },
       { min: 67,  label: 'Risas a Nivel Pro 🤣' },
-      { min: 84,  label: '¡¡AMISTAD LEGENDARIA!! 🏆✨' },
+      { min: 84,  label: '¡¡MI MANCA FAVORITA!! 🏆✨' },
     ];
 
     function updateXP() {
