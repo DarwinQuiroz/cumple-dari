@@ -5,7 +5,6 @@ function setupMusicControls() {
   const pauseIcon = document.getElementById("pauseIcon");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
-  // const songTitleBtn = document.getElementById("songTitle");
 
   if (!music || !musicBtn || !prevBtn || !nextBtn) {
     console.error("Music or control elements not found");
@@ -16,7 +15,6 @@ function setupMusicControls() {
   const playlist = [
     { title: "Si dios fuera poeta - Mike Bahia", src: "assets/sound/si-dios-fuera-poeta.mp3" },
     { title: "Contigo - Al2", src: "assets/sound/contigo.mp3" },
-    // { title: "Estoy contigo - El Chojin", src: "assets/sound/estoy-contigo.mp3" },
     { title: "Milagro - Al2", src: "assets/sound/milagro.mp3" }
   ];
 
@@ -25,9 +23,6 @@ function setupMusicControls() {
   function loadSong(index) {
     if (index >= 0 && index < playlist.length) {
       music.src = playlist[index].src;
-      // if (songTitleBtn) {
-      //   songTitleBtn.textContent = playlist[index].title;
-      // }
       music.load();
     }
   }
