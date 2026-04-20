@@ -16,7 +16,7 @@ function setupMusicControls() {
   const playlist = [
     { title: "Si dios fuera poeta - Mike Bahia", src: "assets/sound/si-dios-fuera-poeta.mp3" },
     { title: "Contigo - Al2", src: "assets/sound/contigo.mp3" },
-    { title: "Estoy contigo - El Chojin", src: "assets/sound/estoy-contigo.mp3" },
+    // { title: "Estoy contigo - El Chojin", src: "assets/sound/estoy-contigo.mp3" },
     { title: "Milagro - Al2", src: "assets/sound/milagro.mp3" }
   ];
 
