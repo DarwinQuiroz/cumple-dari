@@ -28,6 +28,16 @@
       <div class="loader-line"></div>
     </div>
 
+    <!-- Navigation Bar -->
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#galery">Galería</a></li>
+        <li><a href="#wishes">Deseos</a></li>
+        <li><a href="#gamer-section">Sección Gamer</a></li>
+      </ul>
+    </nav>
+
     <div class="music-player">
       <div class="music-controls">
         <button class="music-btn min-btn" id="prevBtn" aria-label="Anterior">
@@ -66,7 +76,7 @@
 
     <div class="container">
       <!-- Header -->
-      <header>
+      <header id="home">
         <h1>¡Feliz Cumpleaños Dari!</h1>
         <p class="subtitle">Para una persona muy especial ✨</p>
         <div class="cake-container">
@@ -139,7 +149,7 @@
       </section>
 
       <!-- Photo Gallery Section -->
-      <section class="photo-section">
+      <section class="photo-section" id="galery">
         <!-- <h2 class="section-title">Momentos Inolvidables 📸</h2> -->
         <h2 class="section-title">Mensajes del Corazón 💌</h2>
         <div class="photo-grid">
@@ -236,21 +246,12 @@
         </div>
       </section>
 
-      <!-- Wishes Section -->
-      <!-- <section class="wishes-section">
-        <h2 class="section-title">Mis Deseos Para Ti 🌈</h2>
-        <div class="wish-item">🎊 Que la alegría te acompañe siempre</div>
-        <div class="wish-item">✨ Que tus sueños se hagan realidad</div>
-        <div class="wish-item">🌺 Que el amor te rodee cada día</div>
-        <div class="wish-item">🎉 Que la salud y la prosperidad sean tuyas</div>
-        <div class="wish-item">💫 Que cada momento sea mágico</div>
-      </section> -->
-      <section id="deseos">
-        <div class="deseos-header">
+      <section id="wishes">
+        <div class="wishes-header">
           <span class="section-label">✦ Desde lo más profundo</span>
           <h2 class="section-title">Mis <em>Deseos</em> para ti</h2>
         </div>
-        <div class="deseos-list">
+        <div class="wishes-list">
           <div class="deseo wish-item">
             <span class="deseo-num">01</span>
             <p class="deseo-text">
@@ -305,10 +306,6 @@
 
         <!-- Interactive Phrase Generator -->
         <div class="gamer-slot-machine">
-          <!-- <h3 class="slot-title">🎰 Generador de Frases Gamer 🎰</h3>
-          <p class="slot-instruction">
-            ¡Dale al botón para descubrir tu frase gamer romántica!
-          </p> -->
           <div class="slot-display" id="slotDisplay">
             <span class="slot-emoji" id="slotEmoji">🎮</span>
             <p class="slot-phrase" id="slotPhrase">
