@@ -35,7 +35,7 @@
     { emoji: '🏁', text: 'Puedo perder en Mario Kart, pero nunca quiero perder la carrera de estar a tu lado.' },
     { emoji: '🎪', text: 'Si me preguntaran dónde dropear en Fortnite, elegiría siempre donde estés tú.' },
     { emoji: '💚', text: 'En el juego de la vida, tú eres el mejor power-up que he encontrado. ¡Nivel completado!' },
-    { emoji: '👾', text: 'Como la arena en Fortnire, tú haces que cada desafío valga la pena.. ¡eres mi misión principal!' },
+    { emoji: '👾', text: 'Como la arena en Fortnite, tú haces que cada desafío valga la pena.. ¡eres mi misión principal!' },
     { emoji: '🍄', text: 'Que este nuevo año consigas todos los power-ups que te propongas en la vida.' },
   ];
 
