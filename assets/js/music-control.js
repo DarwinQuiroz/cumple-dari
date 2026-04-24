@@ -83,14 +83,21 @@ function setupMusicControls() {
       .catch((error) => {
         console.warn("Autoplay blocked:", error.message);
         
+        // Estrategia más robusta para móviles: capturar cualquier primera interacción
         const playOnInteraction = () => {
-          playSong();
-          document.removeEventListener('click', playOnInteraction);
-          document.removeEventListener('touchstart', playOnInteraction);
+          if (music.paused) {
+            playSong();
+          }
+          // Remover todos los listeners una vez que se intentó reproducir
+          ['click', 'touchstart', 'touchend', 'scroll', 'keydown'].forEach(evt => {
+            document.removeEventListener(evt, playOnInteraction);
+          });
         };
 
-        document.addEventListener('click', playOnInteraction);
-        document.addEventListener('touchstart', playOnInteraction);
+        // Escuchar múltiples tipos de interacción
+        ['click', 'touchstart', 'touchend', 'scroll', 'keydown'].forEach(evt => {
+          document.addEventListener(evt, playOnInteraction, { once: true, passive: true });
+        });
       });
   }
 
