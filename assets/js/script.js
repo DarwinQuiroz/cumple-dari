@@ -1,7 +1,25 @@
 window.addEventListener('load', () => {
   setTimeout(() => {
-    document.getElementById('loader').classList.add('hidden')
-    setupMusicControls();
+    const spinner = document.getElementById('loadingSpinner');
+    const enterBtn = document.getElementById('enterBtn');
+    const loaderLine = document.querySelector('.loader-line');
+    
+    if (spinner) spinner.style.display = 'none';
+    if (loaderLine) loaderLine.style.display = 'none';
+    
+    if (enterBtn) {
+      enterBtn.disabled = false;
+      enterBtn.textContent = 'Ingresar';
+      
+      enterBtn.addEventListener('click', () => {
+        document.getElementById('loader').classList.add('hidden');
+        document.body.classList.remove('no-scroll');
+        setupMusicControls();
+      });
+    } else {
+      document.getElementById('loader').classList.add('hidden');
+      setupMusicControls();
+    }
   }, 1800);
 });
 

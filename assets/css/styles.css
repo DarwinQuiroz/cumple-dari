@@ -43,6 +43,11 @@ body {
   position: relative;
 }
 
+/* ── Utilidades ─────────────────────────────── */
+body.no-scroll {
+  overflow: hidden !important;
+}
+
 /* ── Loader ───────────────────────────────── */
 #loader {
   position: fixed;
@@ -82,6 +87,71 @@ body {
   to {
     width: 200px;
   }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(200, 169, 126, 0.3);
+  border-top: 4px solid var(--gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-top: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.enter-btn {
+  margin-top: 20px;
+  padding: 8px 35px;
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--charcoal);
+  background: var(--goldLight);
+  border: 1px solid var(--gold);
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(200, 169, 126, 0.3);
+  text-transform: uppercase;
+}
+
+.enter-btn:not(:disabled) {
+  animation: elegant-pulse 2.5s infinite;
+}
+
+@keyframes elegant-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 217, 188, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(232, 217, 188, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 217, 188, 0);
+  }
+}
+
+.enter-btn:hover:not(:disabled) {
+  transform: translateY(-4px) scale(1.03);
+  background: var(--gold);
+  color: #fff;
+  box-shadow: 0 8px 25px rgba(200, 169, 126, 0.5);
+  animation: none; /* Se detiene el pulso al hacer hover */
+}
+
+.enter-btn:disabled {
+  background: transparent;
+  color: rgba(232, 217, 188, 0.6);
+  border-color: rgba(232, 217, 188, 0.3);
+  cursor: wait;
+  box-shadow: none;
+  letter-spacing: 0.2em;
 }
 
 @keyframes pulse {
