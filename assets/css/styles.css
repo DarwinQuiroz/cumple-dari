@@ -78,11 +78,11 @@ body.no-scroll {
 
 .loader-title {
   font-family: var(--serif);
-  font-size: clamp(0.9rem, 2.2vw, 1.15rem);
+  /* font-size: clamp(0.9rem, 2.2vw, 1.30rem); */
   font-style: italic;
   font-weight: 400;
   color: var(--goldLight);
-  line-height: 1.9;
+  line-height: 1.7;
   text-align: center;
   max-width: 520px;
   padding: 1.5rem 2rem;
@@ -104,7 +104,8 @@ body.no-scroll {
 
 .loader-title::before,
 .loader-title::after {
-  content: '\2727'; /* ✧ */
+  content: '\2727';
+  /* ✧ */
   font-style: normal;
   font-size: 0.8rem;
   color: var(--gold);
