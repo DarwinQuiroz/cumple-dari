@@ -3,14 +3,18 @@ window.addEventListener('load', () => {
     const spinner = document.getElementById('loadingSpinner');
     const enterBtn = document.getElementById('enterBtn');
     const loaderLine = document.querySelector('.loader-line');
-    
+    const loaderTitle = document.querySelector('.loader-title');
+
     if (spinner) spinner.style.display = 'none';
     if (loaderLine) loaderLine.style.display = 'none';
-    
+
+    // Revelar el mensaje elegante cuando desaparece el loading
+    if (loaderTitle) loaderTitle.classList.add('visible');
+
     if (enterBtn) {
       enterBtn.disabled = false;
       enterBtn.textContent = 'Ingresar';
-      
+
       enterBtn.addEventListener('click', () => {
         document.getElementById('loader').classList.add('hidden');
         document.body.classList.remove('no-scroll');

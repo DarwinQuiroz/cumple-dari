@@ -76,6 +76,61 @@ body.no-scroll {
   animation: pulse 2s ease-in-out infinite;
 }
 
+.loader-title {
+  font-family: var(--serif);
+  font-size: clamp(0.9rem, 2.2vw, 1.15rem);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--goldLight);
+  line-height: 1.9;
+  text-align: center;
+  max-width: 520px;
+  padding: 1.5rem 2rem;
+  letter-spacing: 0.04em;
+  border-top: 1px solid rgba(200, 169, 126, 0.3);
+  border-bottom: 1px solid rgba(200, 169, 126, 0.3);
+  position: relative;
+
+  /* Oculto por defecto: sin espacio en el layout */
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.9s ease, transform 0.9s ease, max-height 0.8s ease, padding 0.8s ease;
+}
+
+.loader-title::before,
+.loader-title::after {
+  content: '\2727'; /* ✧ */
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--gold);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  letter-spacing: 0.6em;
+}
+
+.loader-title::before {
+  top: -0.6em;
+}
+
+.loader-title::after {
+  bottom: -0.6em;
+}
+
+.loader-title.visible {
+  opacity: 1;
+  max-height: 300px;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
 .loader-line {
   width: 0;
   height: 1px;
@@ -100,8 +155,13 @@ body.no-scroll {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .enter-btn {
@@ -129,9 +189,11 @@ body.no-scroll {
   0% {
     box-shadow: 0 0 0 0 rgba(232, 217, 188, 0.6);
   }
+
   70% {
     box-shadow: 0 0 0 15px rgba(232, 217, 188, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(232, 217, 188, 0);
   }
@@ -142,7 +204,8 @@ body.no-scroll {
   background: var(--gold);
   color: #fff;
   box-shadow: 0 8px 25px rgba(200, 169, 126, 0.5);
-  animation: none; /* Se detiene el pulso al hacer hover */
+  animation: none;
+  /* Se detiene el pulso al hacer hover */
 }
 
 .enter-btn:disabled {
@@ -279,7 +342,8 @@ body.no-scroll {
 
 .main-nav a:hover {
   color: var(--text-accent);
-  background: rgba(255, 229, 236, 0.5); /* var(--pastel-pink) with opacity */
+  background: rgba(255, 229, 236, 0.5);
+  /* var(--pastel-pink) with opacity */
 }
 
 .main-nav a:hover::after {
@@ -290,11 +354,13 @@ body.no-scroll {
   .main-nav {
     padding: 0.5rem 0;
   }
+
   .main-nav ul {
     gap: 0.5rem;
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .main-nav a {
     font-size: 1rem;
     padding: 0.4rem 0.8rem;
