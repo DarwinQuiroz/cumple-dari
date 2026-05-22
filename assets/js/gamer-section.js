@@ -22,7 +22,7 @@
 
   // ── Gamer Phrases for Slot Machine ──
   const gamerPhrases = [
-    { emoji: '🎯', text: 'Mi puntería en Fortnite es malísima, pero acerté de lleno al elegirte como amiga.' },
+    { emoji: '🎯', text: 'Mi puntería en Fortnite es malísima, pero acerté de lleno al elegirte a tí para formar parte de mi vida.' },
     { emoji: '🏎️', text: 'Eres mi estrella de invincibilidad en Mario Kart... ¡nadie me detiene cuando estoy contigo!' },
     // { emoji: '💜', text: 'Antes de conocerte, jugaba en modo solo. Ahora mi modo favorito es el co-op contigo.' },
     { emoji: '🎯', text: 'En Fortnite construyo muros, pero contigo construyo sueños. ¡Y sin materiales!' },
