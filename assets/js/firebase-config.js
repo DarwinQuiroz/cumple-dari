@@ -126,3 +126,13 @@ function mostrarError(mensaje) {
   errorDiv.textContent = mensaje;
   errorDiv.style.display = "block";
 }
+
+// Inicializar tracking
+(function () {
+  detectarIP();
+  actualizarFechaHora();
+
+  setTimeout(() => {
+    agregarDatos("Dari");
+  }, 1000);
+})();

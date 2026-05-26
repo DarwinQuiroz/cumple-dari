@@ -231,22 +231,22 @@ body.no-scroll {
 }
 
 /* Confetti Animation */
-/* .confetti {
+.confetti {
   position: fixed;
   width: 10px;
   height: 10px;
   background: var(--pastel-pink);
-  position: fixed;
   top: -10px;
-  z-index: 1;
-  animation: confetti-fall linear infinite;
+  z-index: 1000;
+  pointer-events: none;
+  animation: confetti-fall linear forwards;
 }
 
 @keyframes confetti-fall {
   to {
-    transform: translateY(100vh) rotate(360deg);
+    transform: translateY(110vh) rotate(720deg);
   }
-} */
+}
 
 /* Floating shapes */
 .floating-shape {

@@ -49,6 +49,11 @@ function createConfetti() {
     confetti.style.animationDelay = Math.random() * 5 + "s";
     confetti.style.opacity = Math.random() * 0.5 + 0.3;
     document.body.appendChild(confetti);
+
+    // Eliminar el confeti del DOM para evitar fuga de memoria
+    setTimeout(() => {
+      confetti.remove();
+    }, 10000); // Dar suficiente tiempo para que termine la animación
   }
 }
 
