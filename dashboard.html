@@ -8,6 +8,23 @@
 
     <title>Dashboard</title>
 
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem("dashboard-theme");
+                var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+                document.documentElement.setAttribute("data-theme", theme);
+            } catch (e) {}
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+
     <style>
         * {
             margin: 0;
@@ -15,17 +32,100 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --color-bg-start: #f6f4fb;
+            --color-bg-end: #ece7f6;
+            --color-surface: #ffffff;
+            --color-surface-alt: #fbfaff;
+            --color-hover: #faf9ff;
+            --color-text: #2c2440;
+            --color-text-muted: #8880a0;
+            --color-primary: #6c5ce7;
+            --color-primary-dark: #4b3f92;
+            --color-accent: #b8965a;
+            --color-border: #eae6f4;
+            --color-danger: #b3483f;
+            --color-danger-dark: #93392f;
+            --color-danger-border: #f0d4d0;
+            --color-success-bg: #e8f6ee;
+            --color-success-text: #276a45;
+            --color-error-bg: #fbeae8;
+            --color-error-text: #93392f;
+            --color-icon-bg: #eef0fd;
+            --color-cancel-bg: #f4f2fa;
+            --color-cancel-bg-hover: #eae6f4;
+            --color-no-data-icon: #cfc9e6;
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-soft: 0 12px 40px rgba(76, 63, 146, 0.08);
+            --shadow-lift: 0 16px 44px rgba(76, 63, 146, 0.14);
+            color-scheme: light;
+        }
+
+        :root[data-theme="dark"] {
+            --color-bg-start: #1c1830;
+            --color-bg-end: #131020;
+            --color-surface: #221d38;
+            --color-surface-alt: #2a2444;
+            --color-hover: #2a2444;
+            --color-text: #ece9f7;
+            --color-text-muted: #a79fc2;
+            --color-primary: #8b78f0;
+            --color-primary-dark: #a595f7;
+            --color-accent: #d4b483;
+            --color-border: #372f52;
+            --color-danger: #e2897d;
+            --color-danger-dark: #c96e62;
+            --color-danger-border: #4a2f34;
+            --color-success-bg: rgba(47, 161, 99, 0.16);
+            --color-success-text: #7ee0a8;
+            --color-error-bg: rgba(226, 137, 125, 0.16);
+            --color-error-text: #f0a99e;
+            --color-icon-bg: #2f2a4d;
+            --color-cancel-bg: #2a2444;
+            --color-cancel-bg-hover: #332c52;
+            --color-no-data-icon: #4a4270;
+            --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.35);
+            --shadow-lift: 0 20px 50px rgba(0, 0, 0, 0.5);
+            color-scheme: dark;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: "Montserrat", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
             min-height: 100vh;
+            min-height: 100dvh;
             padding: 15px;
+            color: var(--color-text);
+            font-size: 16px;
+            line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         @media (min-width: 768px) {
             body {
-                padding: 20px;
+                padding: 32px;
             }
+        }
+
+        a, button {
+            font-family: inherit;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--color-primary-dark);
+            outline-offset: 2px;
+            border-radius: var(--radius-sm);
         }
 
         .container {
@@ -34,104 +134,246 @@
         }
 
         .header {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            background: var(--color-surface);
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
             margin-bottom: 20px;
+            border: 1px solid var(--color-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         @media (min-width: 768px) {
             .header {
-                padding: 30px;
-                margin-bottom: 30px;
+                padding: 36px 40px;
+                margin-bottom: 28px;
             }
         }
 
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .brand-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
         .header h1 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 24px;
+            font-family: "Cormorant Garamond", serif;
+            color: var(--color-text);
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            line-height: 1.1;
+        }
+
+        .header-subtitle {
+            color: var(--color-text-muted);
+            font-size: 13px;
+            margin-top: 2px;
         }
 
         @media (min-width: 768px) {
             .header h1 {
-                font-size: 32px;
-                margin-bottom: 10px;
+                font-size: 34px;
             }
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            padding: 8px;
+            margin: -8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            touch-action: manipulation;
+        }
+
+        .theme-toggle-track {
+            width: 50px;
+            height: 28px;
+            border-radius: 999px;
+            background: var(--color-icon-bg);
+            border: 1px solid var(--color-border);
+            position: relative;
+            transition: background-color 0.25s ease, border-color 0.25s ease;
+        }
+
+        .theme-toggle-thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--color-surface);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary);
+            transition: transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1), background-color 0.25s ease, color 0.25s ease;
+        }
+
+        :root[data-theme="dark"] .theme-toggle-thumb {
+            transform: translateX(22px);
+        }
+
+        .theme-toggle-thumb svg {
+            position: absolute;
+            width: 13px;
+            height: 13px;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .theme-toggle-thumb .icon-sun {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .theme-toggle-thumb .icon-moon {
+            opacity: 0;
+            transform: scale(0.4) rotate(-90deg);
+        }
+
+        :root[data-theme="dark"] .theme-toggle-thumb .icon-sun {
+            opacity: 0;
+            transform: scale(0.4) rotate(90deg);
+        }
+
+        :root[data-theme="dark"] .theme-toggle-thumb .icon-moon {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .status::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .status.connected {
+            background: var(--color-success-bg);
+            color: var(--color-success-text);
+        }
+
+        .status.connected::before {
+            background: #2fa163;
+            box-shadow: 0 0 0 3px rgba(47, 161, 99, 0.2);
+        }
+
+        .status.disconnected {
+            background: var(--color-error-bg);
+            color: var(--color-error-text);
+        }
+
+        .status.disconnected::before {
+            background: var(--color-danger);
+            box-shadow: 0 0 0 3px rgba(179, 72, 63, 0.18);
         }
 
         .header-info {
             display: flex;
-            gap: 15px;
+            gap: 32px;
             flex-wrap: wrap;
-            margin-top: 15px;
-        }
-
-        @media (min-width: 768px) {
-            .header-info {
-                gap: 30px;
-                margin-top: 20px;
-            }
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border);
         }
 
         .info-card {
             display: flex;
             flex-direction: column;
+            gap: 4px;
         }
 
         .info-label {
-            color: #999;
-            font-size: 12px;
+            color: var(--color-text-muted);
+            font-size: 11px;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            letter-spacing: 0.08em;
             font-weight: 600;
         }
 
         .info-value {
-            color: #667eea;
-            font-size: 18px;
+            font-family: "Cormorant Garamond", serif;
+            color: var(--color-primary-dark);
+            font-size: 24px;
             font-weight: 700;
-        }
-
-        .status {
-            padding: 10px 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            text-align: center;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        .status.connected {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .status.disconnected {
-            background: #f8d7da;
-            color: #721c24;
+            font-variant-numeric: tabular-nums;
         }
 
         .table-container {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
             overflow: hidden;
+            border: 1px solid var(--color-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .table-header {
-            background: #f8f9fa;
-            padding: 20px;
-            border-bottom: 2px solid #eee;
+            background: var(--color-surface-alt);
+            padding: 22px 24px;
+            border-bottom: 1px solid var(--color-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 16px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .table-header h2 {
-            color: #333;
-            font-size: 18px;
+            font-family: "Cormorant Garamond", serif;
+            color: var(--color-text);
+            font-size: 22px;
+            font-weight: 600;
         }
 
         .btn-group {
@@ -143,12 +385,12 @@
             .table-header {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 15px;
-                padding: 15px;
+                gap: 14px;
+                padding: 18px;
             }
 
             .table-header h2 {
-                font-size: 16px;
+                font-size: 19px;
             }
 
             .btn-group {
@@ -156,63 +398,60 @@
                 gap: 8px;
             }
 
+            .btn-group a,
             .btn-group button {
                 flex: 1;
-                padding: 8px 12px !important;
-                font-size: 12px !important;
             }
         }
 
         button {
-            padding: 8px 16px;
             border: none;
-            border-radius: 5px;
+            border-radius: var(--radius-sm);
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            touch-action: manipulation;
         }
 
-        .btn-refresh {
-            background: #667eea;
-            color: white;
+        .btn-view-site,
+        .btn-delete-all {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 44px;
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            touch-action: manipulation;
         }
 
-        .btn-refresh:hover {
-            background: #764ba2;
+        .btn-view-site svg,
+        .btn-delete-all svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
         }
 
         .btn-view-site {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
             color: white;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            min-height: 44px;
-            padding: 8px 18px;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 18px rgba(108, 92, 231, 0.32);
         }
 
         .btn-view-site:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.55);
+            box-shadow: 0 10px 24px rgba(108, 92, 231, 0.4);
         }
 
         .btn-view-site:active {
             transform: translateY(0);
-        }
-
-        .btn-view-site:focus-visible {
-            outline: 2px solid #333;
-            outline-offset: 2px;
-        }
-
-        .btn-view-site svg {
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            transition: transform 0.3s;
         }
 
         .btn-view-site:hover svg {
@@ -220,12 +459,14 @@
         }
 
         .btn-delete-all {
-            background: #dc3545;
-            color: white;
+            background: var(--color-surface);
+            color: var(--color-danger);
+            border: 1.5px solid var(--color-danger-border);
         }
 
         .btn-delete-all:hover {
-            background: #c82333;
+            background: var(--color-error-bg);
+            border-color: var(--color-danger);
         }
 
         table {
@@ -233,28 +474,40 @@
             border-collapse: collapse;
         }
 
+        .table-scroll {
+            overflow-x: auto;
+        }
+
         thead {
-            background: #f8f9fa;
-            border-bottom: 2px solid #ddd;
+            background: var(--color-surface-alt);
+            border-bottom: 1.5px solid var(--color-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         th {
-            padding: 15px;
+            padding: 15px 16px;
             text-align: left;
-            color: #555;
+            color: var(--color-text-muted);
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             text-transform: uppercase;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
         }
 
         td {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            color: #333;
+            padding: 15px 16px;
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text);
+            font-size: 14px;
+        }
+
+        tbody tr {
+            transition: background-color 0.15s ease;
         }
 
         tbody tr:hover {
-            background: #f5f5f5;
+            background: var(--color-hover);
         }
 
         tbody tr:last-child td {
@@ -263,135 +516,324 @@
 
         @media (max-width: 768px) {
             th {
-                padding: 12px 8px;
-                font-size: 11px;
+                padding: 12px 10px;
+                font-size: 10.5px;
             }
 
             td {
-                padding: 12px 8px;
+                padding: 12px 10px;
                 font-size: 13px;
             }
         }
 
-        @media (max-width: 480px) {
-            table {
-                font-size: 12px;
-            }
-
-            th,
-            td {
-                padding: 8px 6px;
-                font-size: 11px;
-            }
-
-            th:nth-child(1),
-            td:nth-child(1) {
-                width: 30px;
-            }
-
-            .ip-badge,
-            .navegador-badge,
-            .fecha-badge {
-                font-size: 10px;
-                padding: 3px 6px;
-                display: block;
-                word-break: break-all;
-            }
-
-            .btn-delete {
-                padding: 4px 8px !important;
-                font-size: 10px !important;
-            }
-        }
-
         .ip-badge {
-            background: #e7f3ff;
-            color: #0066cc;
-            padding: 4px 8px;
-            border-radius: 3px;
-            font-family: "Courier New", monospace;
-            font-size: 13px;
+            background: var(--color-icon-bg);
+            color: var(--color-primary-dark);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 12.5px;
+            display: inline-block;
+            white-space: nowrap;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .navegador-badge {
-            background: #fff3cd;
-            color: #856404;
-            padding: 4px 8px;
-            border-radius: 3px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
+        .navegador-badge,
         .fecha-badge {
-            color: #666;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             font-size: 13px;
+            color: var(--color-text-muted);
+            white-space: nowrap;
+        }
+
+        .navegador-badge svg,
+        .fecha-badge svg {
+            width: 14px;
+            height: 14px;
+            flex-shrink: 0;
+            color: var(--color-primary);
         }
 
         .btn-delete {
-            background: #dc3545;
-            color: white;
-            padding: 6px 12px;
-            font-size: 12px;
+            background: transparent;
+            color: var(--color-danger);
+            border: 1.5px solid var(--color-danger-border);
+            padding: 8px 14px;
+            font-size: 12.5px;
+            min-height: 36px;
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-delete svg {
+            width: 14px;
+            height: 14px;
         }
 
         .btn-delete:hover {
-            background: #c82333;
+            background: var(--color-error-bg);
+            border-color: var(--color-danger);
         }
 
         .no-data {
-            padding: 40px;
+            padding: 64px 24px;
             text-align: center;
-            color: #999;
+            color: var(--color-text-muted);
         }
 
-        .no-data-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
+        .no-data svg {
+            width: 52px;
+            height: 52px;
+            color: var(--color-no-data-icon);
+            margin-bottom: 14px;
+        }
+
+        .no-data h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 22px;
+            color: var(--color-text);
+            font-weight: 600;
+            margin-bottom: 6px;
         }
 
         .loading {
-            padding: 40px;
+            padding: 64px 24px;
             text-align: center;
-            color: #667eea;
-            font-weight: 600;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--color-border);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 5px;
+            background: var(--color-error-bg);
+            color: var(--color-error-text);
+            padding: 14px 18px;
+            border-radius: var(--radius-md);
             margin-bottom: 20px;
-            border-left: 4px solid #dc3545;
+            border-left: 4px solid var(--color-danger);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .error-message svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
         }
 
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            gap: 16px;
             margin-bottom: 20px;
         }
 
         .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            text-align: center;
+            background: var(--color-surface);
+            padding: 22px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            text-align: left;
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border-radius: var(--radius-md);
+            background: var(--color-icon-bg);
+            color: var(--color-primary);
+            flex-shrink: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .stat-icon svg {
+            width: 22px;
+            height: 22px;
         }
 
         .stat-number {
-            font-size: 32px;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
             font-weight: 700;
-            color: #667eea;
-            margin-bottom: 5px;
+            color: var(--color-text);
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
         }
 
         .stat-label {
-            color: #999;
+            color: var(--color-text-muted);
             font-size: 12px;
             text-transform: uppercase;
+            letter-spacing: 0.06em;
             font-weight: 600;
+            margin-top: 4px;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 36, 64, 0.55);
+            backdrop-filter: blur(3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lift);
+            max-width: 420px;
+            width: 100%;
+            max-height: calc(100dvh - 40px);
+            overflow-y: auto;
+            padding: 28px;
+            transform: translateY(10px) scale(0.97);
+            opacity: 0;
+            transition: transform 0.22s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.2s ease, background-color 0.3s ease;
+        }
+
+        .modal-overlay.open .modal-card {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .modal-card {
+                transform: none;
+            }
+        }
+
+        .modal-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--color-error-bg);
+            color: var(--color-danger);
+            margin-bottom: 16px;
+        }
+
+        .modal-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .modal-title {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 8px;
+        }
+
+        .modal-message {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 480px) {
+            .modal-card {
+                padding: 22px;
+            }
+
+            .modal-actions {
+                flex-direction: column-reverse;
+            }
+
+            .modal-actions button {
+                width: 100%;
+            }
+        }
+
+        .btn-cancel,
+        .btn-confirm-danger {
+            min-height: 44px;
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn-cancel {
+            background: var(--color-cancel-bg);
+            color: var(--color-text);
+            border: 1.5px solid var(--color-border);
+        }
+
+        .btn-cancel:hover {
+            background: var(--color-cancel-bg-hover);
+        }
+
+        .btn-confirm-danger {
+            background: linear-gradient(135deg, var(--color-danger) 0%, var(--color-danger-dark) 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 6px 18px rgba(179, 72, 63, 0.32);
+        }
+
+        .btn-confirm-danger:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(179, 72, 63, 0.4);
         }
     </style>
 </head>
@@ -399,14 +841,35 @@
 <body>
     <div class="container">
         <div class="header">
-            <div style="
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-          ">
-                <h1>📊 Dashboard</h1>
-                <div id="status" class="status disconnected">Conectando...</div>
+            <div class="header-top">
+                <div class="brand">
+                    <span class="brand-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 3v18h18" />
+                            <path d="M7 15l4-4 3 3 5-6" />
+                        </svg>
+                    </span>
+                    <div>
+                        <h1>Dashboard</h1>
+                        <p class="header-subtitle">Registros de visitas en tiempo real</p>
+                    </div>
+                </div>
+                <div class="header-controls">
+                    <div id="status" class="status disconnected">Conectando…</div>
+                    <button type="button" class="theme-toggle-btn" id="themeToggle" aria-pressed="false" aria-label="Cambiar a modo oscuro">
+                        <span class="theme-toggle-track">
+                            <span class="theme-toggle-thumb">
+                                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="4" />
+                                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                                </svg>
+                                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                                </svg>
+                            </span>
+                        </span>
+                    </button>
+                </div>
             </div>
 
             <div class="header-info">
@@ -425,18 +888,34 @@
 
         <div class="stats">
             <div class="stat-card">
-                <div class="stat-number" id="totalIPs">0</div>
-                <div class="stat-label">IPs Únicas</div>
+                <span class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="M2 9h20" />
+                    </svg>
+                </span>
+                <div>
+                    <div class="stat-number" id="totalIPs">0</div>
+                    <div class="stat-label">IPs Únicas</div>
+                </div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" id="totalNavegadores">0</div>
-                <div class="stat-label">Navegadores Únicos</div>
+                <span class="stat-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="2" width="16" height="20" rx="2" />
+                        <path d="M8 6h.01M8 10h.01M8 14h.01" />
+                    </svg>
+                </span>
+                <div>
+                    <div class="stat-number" id="totalNavegadores">0</div>
+                    <div class="stat-label">Navegadores Únicos</div>
+                </div>
             </div>
         </div>
 
         <div class="table-container">
             <div class="table-header">
-                <h2>📋 Registros</h2>
+                <h2>Registros</h2>
                 <div class="btn-group">
                     <a href="index.html?preview=1" class="btn-view-site" aria-label="Ver sitio (abre sin registrar visita)">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -447,13 +926,38 @@
                         Ver sitio
                     </a>
                     <button class="btn-delete-all" onclick="eliminarTodo()">
-                        🗑️ Eliminar Todo
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                        </svg>
+                        Eliminar Todo
                     </button>
                 </div>
             </div>
 
             <div id="tablaContenedor">
-                <div class="loading">Cargando datos...</div>
+                <div class="loading">
+                    <span class="spinner" aria-hidden="true"></span>
+                    Cargando datos…
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="confirmOverlay" role="presentation">
+        <div class="modal-card" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmMessage">
+            <div class="modal-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+            </div>
+            <h3 class="modal-title" id="confirmTitle">Confirmar acción</h3>
+            <p class="modal-message" id="confirmMessage">¿Estás seguro?</p>
+            <div class="modal-actions">
+                <button type="button" class="btn-cancel" id="confirmCancelBtn">Cancelar</button>
+                <button type="button" class="btn-confirm-danger" id="confirmAcceptBtn">Eliminar</button>
             </div>
         </div>
     </div>
@@ -479,6 +983,18 @@
         const db = firebase.database();
         let datosRef = db.ref("visitas-dari");
 
+        // Iconos reutilizados en contenido generado dinámicamente
+        const ICON_BROWSER =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg>';
+        const ICON_CALENDAR =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+        const ICON_TRASH =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>';
+        const ICON_INBOX =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>';
+        const ICON_ALERT =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+
         // Detectar conexión
         firebase
             .database()
@@ -487,10 +1003,10 @@
                 const statusDiv = document.getElementById("status");
 
                 if (snapshot.val()) {
-                    statusDiv.textContent = "✓ Conectado";
+                    statusDiv.textContent = "Conectado";
                     statusDiv.className = "status connected";
                 } else {
-                    statusDiv.textContent = "✗ Desconectado";
+                    statusDiv.textContent = "Desconectado";
                     statusDiv.className = "status disconnected";
                 }
             });
@@ -511,7 +1027,7 @@
         function mostrarTabla(datos) {
             const tablaContenedor = document.getElementById("tablaContenedor");
 
-            // Convertir datos a array y ordenar por fecha descendente
+            // Convertir datos a array y ordenar por fecha descendente (más reciente primero)
             const registros = Object.entries(datos)
                 .map(([id, data]) => ({
                     id,
@@ -520,6 +1036,7 @@
                 .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
             let html = `
+                <div class="table-scroll">
                 <table>
                     <thead>
                         <tr>
@@ -539,16 +1056,16 @@
                     <tr>
                         <td>${index + 1}</td>
                         <td><span class="ip-badge">${registro.ip}</span></td>
-                        <td><span class="navegador-badge">🌐 ${registro.navegador
+                        <td><span class="navegador-badge">${ICON_BROWSER} ${registro.navegador
                     }</span></td>
                         <td><span class="ip-badge">${registro.pagina
                     }</span></td>
-                        <td><span class="fecha-badge">📅 ${registro.fecha
+                        <td><span class="fecha-badge">${ICON_CALENDAR} ${registro.fecha
                     }</span></td>
                         <td>
                             <button class="btn-delete" onclick="eliminarRegistro('${registro.id
-                    }')">
-                                Eliminar
+                    }')" aria-label="Eliminar registro ${index + 1}">
+                                ${ICON_TRASH} Eliminar
                             </button>
                         </td>
                     </tr>
@@ -558,6 +1075,7 @@
             html += `
                     </tbody>
                 </table>
+                </div>
             `;
 
             tablaContenedor.innerHTML = html;
@@ -568,7 +1086,7 @@
             const tablaContenedor = document.getElementById("tablaContenedor");
             tablaContenedor.innerHTML = `
                 <div class="no-data">
-                    <div class="no-data-icon">📭</div>
+                    ${ICON_INBOX}
                     <h3>No hay registros</h3>
                     <p>Aún no se han guardado datos en la base de datos</p>
                 </div>
@@ -607,9 +1125,102 @@
                 ahora.toLocaleString("es-ES", opciones);
         }
 
+        // Switch de modo oscuro / claro
+        const themeToggleBtn = document.getElementById("themeToggle");
+
+        function setTheme(theme, persist) {
+            document.documentElement.setAttribute("data-theme", theme);
+            themeToggleBtn.setAttribute("aria-pressed", String(theme === "dark"));
+            themeToggleBtn.setAttribute(
+                "aria-label",
+                theme === "dark" ? "Cambiar a modo claro" : "Cambiar a modo oscuro"
+            );
+            if (persist) {
+                try {
+                    localStorage.setItem("dashboard-theme", theme);
+                } catch (e) {}
+            }
+        }
+
+        setTheme(document.documentElement.getAttribute("data-theme") || "light", false);
+
+        themeToggleBtn.addEventListener("click", () => {
+            const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+            setTheme(next, true);
+        });
+
+        const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        colorSchemeQuery.addEventListener("change", (e) => {
+            let hasSaved = false;
+            try {
+                hasSaved = localStorage.getItem("dashboard-theme") !== null;
+            } catch (err) {}
+            if (!hasSaved) setTheme(e.matches ? "dark" : "light", false);
+        });
+
+        // Modal de confirmación (reemplaza confirm() nativo)
+        const confirmOverlay = document.getElementById("confirmOverlay");
+        const confirmTitleEl = document.getElementById("confirmTitle");
+        const confirmMessageEl = document.getElementById("confirmMessage");
+        const confirmCancelBtn = document.getElementById("confirmCancelBtn");
+        const confirmAcceptBtn = document.getElementById("confirmAcceptBtn");
+        let confirmResolve = null;
+        let lastFocusedEl = null;
+
+        function confirmarAccion({ title, message, confirmLabel = "Eliminar" }) {
+            confirmTitleEl.textContent = title;
+            confirmMessageEl.textContent = message;
+            confirmAcceptBtn.textContent = confirmLabel;
+
+            lastFocusedEl = document.activeElement;
+            document.body.classList.add("modal-open");
+            confirmOverlay.classList.add("open");
+            confirmCancelBtn.focus();
+
+            return new Promise((resolve) => {
+                confirmResolve = resolve;
+            });
+        }
+
+        function cerrarConfirmacion(resultado) {
+            confirmOverlay.classList.remove("open");
+            document.body.classList.remove("modal-open");
+            if (lastFocusedEl) lastFocusedEl.focus();
+            if (confirmResolve) {
+                confirmResolve(resultado);
+                confirmResolve = null;
+            }
+        }
+
+        confirmCancelBtn.addEventListener("click", () => cerrarConfirmacion(false));
+        confirmAcceptBtn.addEventListener("click", () => cerrarConfirmacion(true));
+        confirmOverlay.addEventListener("click", (e) => {
+            if (e.target === confirmOverlay) cerrarConfirmacion(false);
+        });
+        document.addEventListener("keydown", (e) => {
+            if (!confirmOverlay.classList.contains("open")) return;
+            if (e.key === "Escape") {
+                cerrarConfirmacion(false);
+            } else if (e.key === "Tab") {
+                const focusables = [confirmCancelBtn, confirmAcceptBtn];
+                const currentIndex = focusables.indexOf(document.activeElement);
+                e.preventDefault();
+                const nextIndex = e.shiftKey
+                    ? (currentIndex - 1 + focusables.length) % focusables.length
+                    : (currentIndex + 1) % focusables.length;
+                focusables[nextIndex].focus();
+            }
+        });
+
         // Eliminar registro individual
-        function eliminarRegistro(id) {
-            if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
+        async function eliminarRegistro(id) {
+            const confirmado = await confirmarAccion({
+                title: "Eliminar registro",
+                message: "¿Estás seguro de que deseas eliminar este registro? Esta acción no se puede deshacer.",
+                confirmLabel: "Eliminar",
+            });
+
+            if (confirmado) {
                 datosRef
                     .child(id)
                     .remove()
@@ -620,25 +1231,26 @@
         }
 
         // Eliminar todo
-        function eliminarTodo() {
-            if (
-                confirm(
-                    "⚠️ ¿Estás seguro? Esta acción eliminará TODOS los registros y no se puede deshacer."
-                )
-            ) {
-                if (confirm("Confirma nuevamente para eliminar TODO:")) {
-                    datosRef.remove().catch((error) => {
-                        mostrarError("Error al eliminar: " + error.message);
-                    });
-                }
+        async function eliminarTodo() {
+            const confirmado = await confirmarAccion({
+                title: "Eliminar todos los registros",
+                message: "Esta acción eliminará TODOS los registros de forma permanente y no se puede deshacer.",
+                confirmLabel: "Eliminar todo",
+            });
+
+            if (confirmado) {
+                datosRef.remove().catch((error) => {
+                    mostrarError("Error al eliminar: " + error.message);
+                });
             }
         }
 
         // Mostrar errores
         function mostrarError(mensaje) {
             const errorDiv = document.getElementById("errorMessage");
-            errorDiv.textContent = mensaje;
-            errorDiv.style.display = "block";
+            errorDiv.innerHTML = ICON_ALERT + " <span></span>";
+            errorDiv.querySelector("span").textContent = mensaje;
+            errorDiv.style.display = "flex";
             setTimeout(() => {
                 errorDiv.style.display = "none";
             }, 5000);
