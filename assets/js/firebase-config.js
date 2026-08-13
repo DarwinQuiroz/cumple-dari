@@ -15,22 +15,14 @@ const db = firebase.database();
 
 // Variables globales
 let datosRef = db.ref("visitas-dari");
-let estadoConectado = false;
 
 firebase
   .database()
   .ref(".info/connected")
   .on("value", (snapshot) => {
-    estadoConectado = snapshot.val();
-    const statusDiv = document.getElementById("status");
-
-    if (estadoConectado) {
-      statusDiv.textContent = "✓ Conectado a Firebase";
-      statusDiv.className = "status connected";
-    } else {
-      statusDiv.textContent = "✗ Desconectado";
-      statusDiv.className = "status disconnected";
-    }
+    console.log(
+      snapshot.val() ? "✓ Conectado a Firebase" : "✗ Desconectado"
+    );
   });
 
 // Detectar IP
@@ -38,17 +30,15 @@ async function detectarIP() {
   try {
     const response = await fetch("https://api.ipify.org?format=json");
     const data = await response.json();
-    document.getElementById("miIP").textContent = data.ip;
     return data.ip;
   } catch (error) {
     console.error("Error al detectar IP:", error);
-    document.getElementById("miIP").textContent = "No disponible";
     return "No disponible";
   }
 }
 
-// Actualizar fecha y hora en tiempo real
-function actualizarFechaHora() {
+// Fecha y hora actual formateada
+function obtenerFechaHora() {
   const ahora = new Date();
   const opciones = {
     year: "numeric",
@@ -59,8 +49,7 @@ function actualizarFechaHora() {
     second: "2-digit",
     hour12: false,
   };
-  const fechaFormato = ahora.toLocaleString("es-ES", opciones);
-  document.getElementById("fechaHora").textContent = fechaFormato;
+  return ahora.toLocaleString("es-ES", opciones);
 }
 
 // Detectar navegador
@@ -79,60 +68,29 @@ function detectarNavegador() {
 }
 
 // Función para agregar datos
-function agregarDatos(pagina) {
-  const arrUrl = window.location.href.split("/");
+async function agregarDatos(pagina) {
+  if (window.location.hostname.includes("localhost")) return;
 
-  if (arrUrl[2].includes("localhost")) return;
+  const ip = await detectarIP();
 
-  const ip = document.getElementById("miIP").textContent;
-  const fecha = document.getElementById("fechaHora").textContent;
-  const navegador = detectarNavegador();
-  const errorDiv = document.getElementById("error");
-
-  // Validar que la IP se haya detectado correctamente
-  if (ip === "Detectando..." || ip === "No disponible") {
-    mostrarError("Esperando a detectar tu IP...");
+  if (ip === "No disponible") {
+    console.warn("Esperando a detectar tu IP...");
     return;
   }
 
-  // Guardar en Firebase
-  datosRef
-    .push({
+  try {
+    await datosRef.push({
       ip: ip,
-      fecha: fecha,
+      fecha: obtenerFechaHora(),
       pagina: pagina,
-      navegador: navegador,
+      navegador: detectarNavegador(),
       timestamp: firebase.database.ServerValue.TIMESTAMP,
-    })
-    .then(() => {
-      errorDiv.style.display = "none";
-      // Mostrar mensaje de éxito temporal
-      const mensajeExito = document.createElement("div");
-      mensajeExito.className = "status connected";
-      mensajeExito.textContent = "✓ Datos guardados correctamente";
-      document
-        .querySelector(".container")
-        .insertBefore(mensajeExito, errorDiv.nextSibling);
-      setTimeout(() => mensajeExito.remove(), 3000);
-    })
-    .catch((error) => {
-      mostrarError("Error al guardar: " + error.message);
     });
-}
-
-// Mostrar errores
-function mostrarError(mensaje) {
-  const errorDiv = document.getElementById("error");
-  errorDiv.textContent = mensaje;
-  errorDiv.style.display = "block";
+    console.log("✓ Datos guardados correctamente");
+  } catch (error) {
+    console.error("Error al guardar:", error.message);
+  }
 }
 
 // Inicializar tracking
-(function () {
-  detectarIP();
-  actualizarFechaHora();
-
-  setTimeout(() => {
-    agregarDatos("Dari");
-  }, 1000);
-})();
+agregarDatos("Dari");

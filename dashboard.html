@@ -472,9 +472,7 @@
                     id,
                     ...data,
                 }))
-                .sort((a, b) => {
-                    return new Date(b.fecha) - new Date(a.fecha);
-                });
+                .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 
             let html = `
                 <table>
