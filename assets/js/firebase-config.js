@@ -71,6 +71,12 @@ function detectarNavegador() {
 async function agregarDatos(pagina) {
   if (window.location.hostname.includes("localhost")) return;
 
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("preview")) {
+    console.log("Modo preview: no se registran datos");
+    return;
+  }
+
   const ip = await detectarIP();
 
   if (ip === "No disponible") {
